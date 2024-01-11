@@ -1,66 +1,68 @@
-## Foundry
+## Decentralized Exchange (DEX) Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# Overview
 
-Foundry consists of:
+   This Solidity smart contract implements a basic decentralized exchange (DEX) on the Ethereum blockchain. The DEX allows users to deposit and withdraw ERC-20 tokens and ether, place limit orders, fill orders, and add liquidity to the exchange.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+# Features
+   
+   - Token Operations:
 
-## Documentation
+    Deposit and withdraw ERC-20 tokens.
+    Deposit and withdraw ether.
 
-https://book.getfoundry.sh/
+- Order Book:
 
-## Usage
+    Place limit orders specifying the token, total tokens, and desired ether amount.
+    Fill existing orders based on availability and user balance.
 
-### Build
+- Liquidity Pool:
 
-```shell
-$ forge build
-```
+    Add liquidity by providing ERC-20 tokens and ether to the liquidity pool
 
-### Test
+# Smart Contract Architecture
 
-```shell
-$ forge test
-```
+    The smart contract is structured as follows:
 
-### Format
+- DEX Contract:
+        Manages the overall functionality of the decentralized exchange.
+        Allows the owner to add supported tokens.
+        Handles token and ether deposits, withdrawals, and order placements.
 
-```shell
-$ forge fmt
-```
+    - Order Structure:
+        Represents the details of an order, including the trader's address, token, total tokens, remaining tokens, ether amount, and filled amount.
 
-### Gas Snapshots
+  -  Liquidity Structure:
+        Represents the details of liquidity provided, including the provider's address, token, token amount, and ether amount.     
 
-```shell
-$ forge snapshot
-```
+# Getting Started
+- Deployment
 
-### Anvil
+    Deploy the DEX smart contract to the Ethereum blockchain.
+    Set the contract owner address during deployment.
 
-```shell
-$ anvil
-```
+- Usage
 
-### Deploy
+   - Adding Tokens:
+        Call the addToken function as the owner to add supported tokens to the DEX.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+   - Depositing and Withdrawing:
+        Deposit ERC-20 tokens using the depositToken function.
+        Deposit ether using the deposit function.
+        Withdraw ERC-20 tokens using the withdrawTokens function.
+        Withdraw ether using the withdraw function.
 
-### Cast
+   - Placing Orders:
+        Place limit orders using the placeOrder function, specifying the token, total tokens, and desired ether amount.
 
-```shell
-$ cast <subcommand>
-```
+   - Filling Orders:
+        Fill existing orders using the fillOrder function by providing the order ID.
 
-### Help
+   - Adding Liquidity:
+        Add liquidity using the addLiquidity function, providing ERC-20 tokens and ether.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+# Security Considerations
+
+    Use the SafeERC20 library to ensure safe ERC-20 token operations.
+    Ensure thorough testing and auditing before deploying the contract to the Ethereum mainnet.
+    Consider additional security measures based on specific use cases.        
